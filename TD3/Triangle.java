@@ -1,4 +1,6 @@
-public class Triangle extends Shape2D {
+
+
+public class Triangle extends Polygone {
   private Point2D A, B, C;
 
   public Triangle(Point2D A, Point2D B, Point2D C){
@@ -53,4 +55,12 @@ public class Triangle extends Shape2D {
   public String toString(){
     return "Triangle ((" + A.getX() + ", " + A.getY() + "), (" + B.getX() + ", " + B.getY() + "), (" + C.getX() + ", " + C.getY() + "))";
   }
+  
+  public Point2D[] vertices() {
+		Point2D[] myvertices = new Point2D[3];
+		myvertices[0] = A;
+		myvertices[1] = B;
+		myvertices[2] = C;
+		return myvertices;
+	}
 }

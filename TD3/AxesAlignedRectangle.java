@@ -1,3 +1,5 @@
+
+
 public class AxesAlignedRectangle extends Shape2D {
   private double longueur, hauteur;
   private Point2D p1;
@@ -39,8 +41,21 @@ public class AxesAlignedRectangle extends Shape2D {
   public double perimeter(){
     return 2 * longueur + 2 * hauteur;
   }
+  
+  public boolean estInterieur(Point2D p) {
+		return p.getX() - p1.getX() > 0 && p.getX() - p1.getX() <= longueur && p1.getY() - p.getY() > 0 && p1.getY() - p.getY() <= hauteur;
+	}
 
   public String toString(){
     return "AxesAlignedRectangle ((" + p1.getX() + ", " + p1.getY() + "), " + longueur + ", "  + hauteur + ")";
   }
+  
+  public Point2D[] vertices() {
+		Point2D[] myvertices = new Point2D[4];
+		myvertices[0] = p1;
+		myvertices[1] = new Point2D(p1.getX() + longueur, p1.getY());
+		myvertices[2] = new Point2D(p1.getX() + longueur, p1.getY() + hauteur);
+		myvertices[3] = new Point2D(p1.getX(), p1.getY() + hauteur);
+		return myvertices;
+	}
 }
