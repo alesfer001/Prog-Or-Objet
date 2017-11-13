@@ -3,6 +3,7 @@
 public class AxesAlignedRectangle {
 	private double longueur, hauteur;
 	private Point2D p1;
+	private int r,g,b;
 
 	public AxesAlignedRectangle(Point2D p1, double l, double h){
 		this.p1 = p1;
@@ -29,6 +30,16 @@ public class AxesAlignedRectangle {
 	public void setHauteur(double h){
 		this.hauteur = h;
 	}
+	
+	public String getColor() {
+		return "(" + r + ", " + g + ", " + b + ")\n";
+	}
+	
+	public void setColor(int r, int g, int b){
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
 
 	public void print(){
 		System.out.println(this);
@@ -51,11 +62,15 @@ public class AxesAlignedRectangle {
 	}
 
 	public boolean estInterieur(Point2D p) {
-		return p.getX() - p1.getX() > 0 && p.getX() - p1.getX() <= longueur && p1.getY() - p.getY() > 0 && p1.getY() - p.getY() <= hauteur;
+		return p.getX() - p1.getX() > 0 && p.getX() - p1.getX() < longueur && p1.getY() - p.getY() > 0 && p1.getY() - p.getY() < hauteur;
 	}
 
 	public String toString(){
 		return "AxesAlignedRectangle ((" + p1.getX() + ", " + p1.getY() + "), " + longueur + ", "  + hauteur + ")";
+	}
+	
+	public String svg(){
+		return "<rect x='" + p1.getX() + "' y='" + p1.getY() + "' width='" + longueur + "' height='"+ hauteur + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
 	}
 
 	public Point2D[] vertices() {

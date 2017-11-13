@@ -28,6 +28,12 @@ public class Circle extends Shape2D {
 	public void setRayon(double r){
 		this.rayon = r;
 	}
+	
+	public void setzIndex(int z){
+		if(z >= 0 && z <=100){
+			zIndex = z;			
+		}
+	}
 
 	public void translate(double dx, double dy){
 		this.centre.translate(dx, dy);
@@ -63,5 +69,9 @@ public class Circle extends Shape2D {
 
 	public String toString(){
 		return "Circle (" + name + "(" + centre.getX() + ", " + centre.getY() + "), "  + rayon + ")";
+	}
+	
+	public String svg(){
+		return "<circle cx='" + centre.getX() + "' cy='"+ centre.getY() + "' r='" + rayon + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
 	}
 }

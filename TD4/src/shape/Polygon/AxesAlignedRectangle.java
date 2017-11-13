@@ -32,6 +32,12 @@ public class AxesAlignedRectangle extends Polygone {
 	public void setHauteur(double h){
 		this.hauteur = h;
 	}
+	
+	public void setzIndex(int z){
+		if(z >= 0 && z <=100){
+			zIndex = z;			
+		}
+	}
 
 	public void translate(double dx, double dy){
 		this.p1.translate(dx, dy);
@@ -71,6 +77,10 @@ public class AxesAlignedRectangle extends Polygone {
 
 	public String toString(){
 		return "AxesAlignedRectangle (" + name + "(" + p1.getX() + ", " + p1.getY() + "), " + longueur + ", "  + hauteur + ")";
+	}
+	
+	public String svg(){
+		return "<rect x='" + p1.getX() + "' y='" + p1.getY() + "' width='" + longueur + "' height='"+ hauteur + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
 	}
 
 	public Point2D[] vertices() {

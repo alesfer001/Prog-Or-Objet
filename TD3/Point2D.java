@@ -40,6 +40,10 @@ public class Point2D extends Shape2D {
         double d2 = p.y - y;
         return Math.sqrt(d1*d1 + d2*d2);
    }
+    
+    public boolean inside(Point2D p){
+    	return p.x == x && p.y == y; 
+    }
 
    public String toString() {
     return "Point2D (" + x + ", "  + y + ")";

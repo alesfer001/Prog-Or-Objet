@@ -2,6 +2,8 @@ package shape;
 public abstract class Shape2D {
 
 	protected String name;
+	protected int r,g,b;
+	protected int zIndex;
 
 	public abstract double area();
 

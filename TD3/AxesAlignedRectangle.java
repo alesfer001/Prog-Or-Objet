@@ -1,6 +1,6 @@
 
 
-public class AxesAlignedRectangle extends Shape2D {
+public class AxesAlignedRectangle extends Polygone {
   private double longueur, hauteur;
   private Point2D p1;
 
@@ -49,6 +49,10 @@ public class AxesAlignedRectangle extends Shape2D {
   public String toString(){
     return "AxesAlignedRectangle ((" + p1.getX() + ", " + p1.getY() + "), " + longueur + ", "  + hauteur + ")";
   }
+  
+  public String svg(){
+		return "<rect x='" + p1.getX() + "' y='" + p1.getY() + "' width='" + longueur + "' height='"+ hauteur + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
+	}
   
   public Point2D[] vertices() {
 		Point2D[] myvertices = new Point2D[4];

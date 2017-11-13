@@ -1,7 +1,8 @@
 
 
-public class Triangle extends Polygone {
+public class Triangle {
   private Point2D A, B, C;
+  private int r,g,b;
 
   public Triangle(Point2D A, Point2D B, Point2D C){
     this.A = A;
@@ -32,6 +33,16 @@ public class Triangle extends Polygone {
   public void setC(Point2D C){
     this.C = C;
   }
+  
+  public String getColor() {
+		return "(" + r + ", " + g + ", " + b + ")\n";
+	}
+	
+	public void setColor(int r, int g, int b){
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
 
   public void print(){
     System.out.println(this);

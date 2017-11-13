@@ -35,6 +35,12 @@ public class Triangle extends Polygone {
 	public void setC(Point2D C){
 		this.C = C;
 	}
+	
+	public void setzIndex(int z){
+		if(z >= 0 && z <=100){
+			zIndex = z;			
+		}
+	}
 
 	public void print(){
 		System.out.println(this);
@@ -81,6 +87,10 @@ public class Triangle extends Polygone {
 		else {
 			return false;
 		}
+	}
+	
+	public String svg(){
+		return "<polygon points='" + A.getX()+ "," + A.getY() + " " + B.getX()+ "," + B.getY() + " " + C.getX() + "," + C.getY() + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
 	}
 	
 	public Point2D[] vertices() {

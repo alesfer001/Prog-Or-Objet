@@ -38,6 +38,29 @@ public class Circle extends Shape2D {
   public double perimeter(){
     return 2 * Math.PI * rayon;
   }
+  
+  boolean inside(Point2D p){
+	  return centre.distance(p) < rayon;
+  }
+  
+  boolean inside(Polygone p){
+	  Point2D[] pointArray = new Point2D[4];
+	  pointArray = p.vertices();
+	  for(int i=0; i<5; i++){
+		  if(!this.inside(pointArray[i])){
+			  return false;
+		  }
+	  }
+	  return true;
+  }
+  
+  boolean inside(Circle c){
+	  return centre.distance(c.getCentre()) <= rayon - c.getRayon(); 
+  }
+  
+  public String svg(){
+		return "<circle cx='" + centre.getX() + "' cy='"+ centre.getY() + "' r='" + rayon + "' fill='rgb(" + r + "," + g + "," + b + ")' />";
+	}
 
   public String toString(){
     return "Circle ((" + centre.getX() + ", " + centre.getY() + "), "  + rayon + ")";
