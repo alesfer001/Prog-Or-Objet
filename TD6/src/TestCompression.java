@@ -1,7 +1,7 @@
 
 public class TestCompression {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RLEException {
 		String original = "aaaaaaa##bbbbbbaaaaaaaabbbbbbbcccccccccc#a";
 		RLECompression myCompression = new RLECompression('#');
 		String compressed = myCompression.compress(original);

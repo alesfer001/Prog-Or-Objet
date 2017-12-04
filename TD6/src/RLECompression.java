@@ -50,7 +50,7 @@ public class RLECompression implements ICompression {
 		return compressed;
 	}
 	
-    public String uncompress(String data){
+    public String uncompress(String data) throws RLEException{
     	String uncompressed = "";
     	for(int i=0; i<data.length(); i++){
     		if(data.charAt(i) == flag){
@@ -64,7 +64,7 @@ public class RLECompression implements ICompression {
     				uncompressed = uncompressed.concat("" + flag);
     			}
     			else{
-    				throw new java.lang.Error("Erreur de décompression : Caractère # incorrect après le flag #\n"
+    				throw new RLEException("Erreur de décompression : Caractère # incorrect après le flag #\n"
     						+ "décodé à ce stade : " + uncompressed + "\n"
     						+ "non décodé : " + data.substring(i) + "\n");
     			}
