@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
-class SpaceShip extends Item {
+class SpaceShip extends Item implements java.io.Serializable{
 
 	private Item objective;
 	private int speed = 1;

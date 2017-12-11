@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player {
+public class Player implements java.io.Serializable {
+	private static final long serialVersionUID = -2325653399861863486L;
 	private int id;
 	private int nbPlanets = 1;
 	private ArrayList<Planet> planets;

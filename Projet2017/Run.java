@@ -15,10 +15,12 @@ public class Run implements ApplicationRunnable<Item> {
 
 	private int width;
 	private int height;
+	private Game myGame;
 
-	public Run(int width, int height) {
+	public Run(int width, int height, Game myGame) {
 		this.width = width;
 		this.height = height;
+		this.myGame = myGame;
 	}
 
 	public void run(final Arena<Item> arg0, final Collection<Item> arg1) {
@@ -33,7 +35,7 @@ public class Run implements ApplicationRunnable<Item> {
 		/*
 		 * This is our KeyHandler that will be called by the Arena in case of key events
 		 */
-		KeyListener keyListener = new KeyListener(frame);
+		KeyListener keyListener = new KeyListener(frame, myGame);
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.add(arg0.createComponent(this.width, this.height, mouseHandler, keyListener));
@@ -74,7 +76,7 @@ public class Run implements ApplicationRunnable<Item> {
 
 			public void run(TimerTask timerTask) {
 				Game.startGameAI(0);
-				//Game.startGameAI(1);
+				Game.startGameAI(1);
 			}
 		});
 	}

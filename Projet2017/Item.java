@@ -7,8 +7,8 @@ import java.awt.geom.Point2D;
  * Any graphical element that will be handle by the application.
  *
  */
-abstract class Item {
-
+abstract class Item implements java.io.Serializable {
+	private static final long serialVersionUID = -2325653399861863486L;
 	protected final Point2D center;
 	private final int width;
 	private int ownerId;

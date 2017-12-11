@@ -3,19 +3,27 @@ package simpleUIApp;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Game {
+public class Game implements java.io.Serializable {
+	private static final long serialVersionUID = -2325653399861863486L;
 	private int nbPlayers;
 	private int nbPlanets;
 	private int nbPPlanets;
 	private ArrayList<Player> players;
 	private static ArrayList<Planet> planets;
+	private ArrayList<Planet> serialPlanets;
 	private ArrayList<Planet> Nplanets;
 	private ArrayList<Planet> playerPlanets;
 	private static CopyOnWriteArrayList<Item> ItemList;
+	private CopyOnWriteArrayList<Item> serialItemList;
 	private Random random = new Random();
 	private ArrayList<Color> colors;
 	private int width = 1024;
@@ -24,11 +32,18 @@ public class Game {
 	private int spaceship_width = 10;
 	private int distMin = 80;
 	
+	
 	public Game(int nbPlayers, int nbPlanets, int nbPPlanets) {
 		this.nbPlayers = nbPlayers;
 		this.nbPlanets = nbPlanets;
 		this.nbPPlanets = nbPPlanets;
 	}
+	
+
+	public Game() {
+		super();
+	}
+
 
 	public ArrayList<Player> getPlayers() {
 		return players;
@@ -133,7 +148,198 @@ public class Game {
 		}
 	}
 	
-	public void playerLost(int id){
+	public void saveGame(){
+		try {
+	         FileOutputStream fileOut = new FileOutputStream("/tmp/save.game");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         serialPlanets = Game.getPlanets();
+	         serialItemList = Game.getItemList();
+	         out.writeObject(this);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in /tmp/save.game");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
+	   }
+	
+	public void setSerialPlanets(ArrayList<Planet> serialPlanets) {
+		this.serialPlanets = serialPlanets;
+	}
+
+
+	public void setSerialItemList(CopyOnWriteArrayList<Item> serialItemList) {
+		this.serialItemList = serialItemList;
+	}
+
+
+	public Game loadGame(){
+		Game game = null;
+	      try {
+	         FileInputStream fileIn = new FileInputStream("/tmp/save.game");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         game = (Game) in.readObject();
+	         game.setPlanets(game.getSerialPlanets());
+	         game.setItemList(game.getSerialItemList());
+	         in.close();
+	         fileIn.close();
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	         return null;
+	      } catch (ClassNotFoundException c) {
+	         System.out.println("Game class not found");
+	         c.printStackTrace();
+	         return null;
+	      }
+	      return game;
+	}
+		
+		public ArrayList<Planet> getSerialPlanets() {
+		return serialPlanets;
+	}
+
+
+	public CopyOnWriteArrayList<Item> getSerialItemList() {
+		return serialItemList;
+	}
+
+
+		public int getNbPlayers() {
+		return nbPlayers;
+	}
+
+
+	public void setNbPlayers(int nbPlayers) {
+		this.nbPlayers = nbPlayers;
+	}
+
+
+	public int getNbPlanets() {
+		return nbPlanets;
+	}
+
+
+	public void setNbPlanets(int nbPlanets) {
+		this.nbPlanets = nbPlanets;
+	}
+
+
+	public int getNbPPlanets() {
+		return nbPPlanets;
+	}
+
+
+	public void setNbPPlanets(int nbPPlanets) {
+		this.nbPPlanets = nbPPlanets;
+	}
+
+
+	public ArrayList<Planet> getPlayerPlanets() {
+		return playerPlanets;
+	}
+
+
+	public void setPlayerPlanets(ArrayList<Planet> playerPlanets) {
+		this.playerPlanets = playerPlanets;
+	}
+
+
+	public Random getRandom() {
+		return random;
+	}
+
+
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+
+
+	public ArrayList<Color> getColors() {
+		return colors;
+	}
+
+
+	public void setColors(ArrayList<Color> colors) {
+		this.colors = colors;
+	}
+
+
+	public int getWidth() {
+		return width;
+	}
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
+	public int getHeight() {
+		return height;
+	}
+
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+
+	public int getPlanet_width() {
+		return planet_width;
+	}
+
+
+	public void setPlanet_width(int planet_width) {
+		this.planet_width = planet_width;
+	}
+
+
+	public int getSpaceship_width() {
+		return spaceship_width;
+	}
+
+
+	public void setSpaceship_width(int spaceship_width) {
+		this.spaceship_width = spaceship_width;
+	}
+
+
+	public int getDistMin() {
+		return distMin;
+	}
+
+
+	public void setDistMin(int distMin) {
+		this.distMin = distMin;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
+	}
+
+
+	public static void setPlanets(ArrayList<Planet> planets) {
+		Game.planets = planets;
+	}
+
+
+	public void setNplanets(ArrayList<Planet> nplanets) {
+		Nplanets = nplanets;
+	}
+
+
+	public static void setItemList(CopyOnWriteArrayList<Item> itemList) {
+		ItemList = itemList;
+	}
+
+
+		public void playerLost(int id){
 		System.out.println("Player " + id + " lost.");
 	}
 	

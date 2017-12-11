@@ -5,11 +5,12 @@ import javax.swing.JFrame;
 import fr.ubordeaux.simpleUI.KeyHandler;
 
 public class KeyListener implements KeyHandler {
-
+	private Game myGame;
 	private JFrame mFrame;
 
-	public KeyListener(JFrame frame) {
+	public KeyListener(JFrame frame, Game myGame) {
 		mFrame = frame;
+		this.myGame = myGame;
 	}
 
 	public JFrame getParentFrame() {
@@ -31,6 +32,9 @@ public class KeyListener implements KeyHandler {
 			break;
 		case '-':
 			System.out.println("- has been typed");
+			break;
+		case 's':
+			myGame.saveGame();
 			break;
 		default:
 			// do nothing

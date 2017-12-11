@@ -6,8 +6,11 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Planet extends Item {
-	
+public class Planet extends Item implements java.io.Serializable {
+	public void setSpaceShips(ArrayList<SpaceShip> spaceShips) {
+		this.spaceShips = spaceShips;
+	}
+	private static final long serialVersionUID = -2325653399861863486L;
 	private static int prodRate = 5;
 	private int nbShips = 5;
 	private int maxShips = 20;
